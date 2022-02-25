@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<title>PB Fitness</title>
+<h1>PB Fitness User Management</h1>
+<h2>Name: {{curUser.name}}</h2>
+<h2>Subscription: {{curUser.subscription}}</h2>
+<div>
+
+  <table border='1' width='75%' style='border-collapse: collapse; font-weight: bold;'>
+    <tr>
+      <th>Exercise</th>
+      <th>Weight</th>
+      <th>Sets</th>
+      <th>Reps</th>
+      <th>Notes</th>
+
+    </tr>
+
+    <tr *ngFor="let workout of workouts">
+      <td>{{ workout.exercise }}</td>
+      <td>{{ workout.weight }}</td>
+      <td>{{ workout.sets }}</td>
+      <td>{{ workout.reps }}</td>
+      <td>{{ workout.notes }}</td>
+      <td>
+        <button (click)="editWork(workout)">Edit</button>
+        <!--  <button (click)="deleteWork(workout)">Delete</button>
+        -->
+      </td>
+    </tr>
+  </table>
+  <button (click)="addWork()">Add exercise</button>
+  <button routerLink="">User List</button>
+  <br>
+  <div *ngIf="toggleWork">
+    <form #f="ngForm">
+      <tr>
+        <td>
+          <label>Exercise</label>
+          <input type="text" name="exercise" [(ngModel)]="selectedWork.exercise">
+        </td>
+        <td>
+          <label>Weight</label>
+          <input type="number" name="weight" maxlength="6" [(ngModel)]="selectedWork.weight">
+        </td>
+        <td>
+          <label>Sets</label>
+          <input type="number" name="sets" maxlength="3" [(ngModel)]="selectedWork.sets">
+        </td>
+        <td>
+          <label>Reps</label>
+          <input type="number" name="reps" maxlength="3" [(ngModel)]="selectedWork.reps">
+        </td>
+        <td>
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="5" cols="60" [(ngModel)]="selectedWork.notes"></textarea>
+        </td>
+      </tr>
+
+      <input type="button" (click)="updateWork(f)" value="Update exercise">
+      <input type="button" (click)="stopEdit()" value="Cancel">
+    </form>
+  </div>
+
+  <div *ngIf="addW">
+    <form #f="ngForm">
+      <tr>
+        <td>
+          <label>Exercise</label>
+          <input type="text" name="exercise" value="" [(ngModel)]="newWork.exercise" >
+        </td>
+        <td>
+          <label>Weight</label>
+          <input type="number" name="weight" maxlength="6" [(ngModel)]="newWork.weight" >
+        </td>
+        <td>
+          <label>Sets</label>
+          <input type="number" name="sets" maxlength="3" [(ngModel)]="newWork.sets" >
+        </td>
+        <td>
+          <label>Reps</label>
+          <input type="number" name="reps" maxlength="3" [(ngModel)]="newWork.reps" >
+        </td>
+        <td>
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="5" cols="60" [(ngModel)]="newWork.notes" ></textarea>
+        </td>
+      </tr>
+
+      <input type="button" (click)="createWork(f)" value="Add exercise">
+      <input type="button" (click)="stopEdit()" value="Cancel">
+    </form>
+  </div>
+</div>
+

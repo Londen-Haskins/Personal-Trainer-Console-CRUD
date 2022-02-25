@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<h1>PB Fitness User Management</h1>
+<div>
+
+  <table border='1' width='45%' style='border-collapse: collapse; font-weight: bold;'>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Subscription</th>
+
+    </tr>
+
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.subscription }}</td>
+      <td>
+        <button (click)="deleteUser(user.id)">Delete</button>
+        <button (click)="selectUser(user)">Update</button>
+        <button routerLink='{{user.id}}'>Details</button>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+  <button (click)="toggleCreate()">Create User</button>
+  <div *ngIf="userUp" >
+    <form #f="ngForm">
+      <label>Name</label>
+      <input type="text" name="name" [(ngModel)]="selectedUser.name">
+      <br>
+      <label>Subscription</label>
+      <input type="text" name="subscription" [(ngModel)]="selectedUser.subscription">
+      <br>
+      <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
+    </form>
+  </div>
+  <div *ngIf="userCr">
+    <form #f="ngForm">
+      <label>Name</label>
+      <input type="text" name="name" [(ngModel)]="newUser.name">
+      <br>
+      <label>Subscription</label>
+      <input type="text" name="subscription" [(ngModel)]="newUser.subscription">
+      <br>
+      <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
+    </form>
+  </div>
+
+</div>
