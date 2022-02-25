@@ -1,0 +1,19 @@
+Database Tables: users, workouts
+
+Users Structure:{
+  'id' TYPE(int) EXTRA(auto-increment);
+  'name' TYPE(varchar[50]);
+  'subscription' TYPE(varchar[50]);
+  'workoutId' TYPE(int);
+  'dietId' TYPE(int);
+ }
+ 
+ Workouts Structure:{
+  'id' TYPE(int);
+  'exercise' TYPE(text);
+  'weight' TYPE(decimal[6,2]);
+  'sets' TYPE(int);
+  'reps' TYPE(int);
+  'notes' TYPE(text);
+  'nKey' TYPE(int);
+ }
