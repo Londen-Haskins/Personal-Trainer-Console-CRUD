@@ -23,8 +23,7 @@
       <td>{{ workout.notes }}</td>
       <td>
         <button (click)="editWork(workout)">Edit</button>
-        <!--  <button (click)="deleteWork(workout)">Delete</button>
-        -->
+        <button (click)="deleteWork(workout.workoutId, workout.nKey)">Delete</button>
       </td>
     </tr>
   </table>

@@ -61,6 +61,12 @@ export class UserDetailComponent implements OnInit {
 
   }
 
+  deleteWork(id: any, nKey: any) {
+    this.apiService.deleteWorkout(id, nKey).subscribe((user: User) => {
+      console.log("Workout deleted", user);
+    });
+  }
+
   stopEdit() {
     this.toggleWork = false;
     this.addW = false;

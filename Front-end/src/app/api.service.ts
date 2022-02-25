@@ -38,6 +38,10 @@ export class ApiService {
   deleteUser(id: number) {
     return this.httpClient.delete<User>(`${this.PHP_API_SERVER}/api/delete.php/?id=${id}`);
   }
+
+  deleteWorkout(id: number, nKey: number) {
+    return this.httpClient.delete<User>(`${this.PHP_API_SERVER}/api/deleteWorkout.php/?id=${id}&nKey=${nKey}`);
+  }
 }
 
 
