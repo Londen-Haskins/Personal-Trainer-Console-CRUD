@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  PHP_API_SERVER = "http://18.188.122.85";
+  PHP_API_SERVER = "http://localhost:8000";
   constructor(private httpClient: HttpClient) { }
 
   readUser(): Observable<User[]> {
