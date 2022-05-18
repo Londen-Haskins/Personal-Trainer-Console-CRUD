@@ -4,3 +4,4 @@ The web app is currently hosted on AWS via a Linux t2.micro EC2 instance, and us
 
 # Live Example
 A sample of the web app can be viewed at http://18.188.122.85/
+Server architecture can be examined in the diagram PDF
