@@ -9,11 +9,8 @@ $id = $_GET['id'];
 
 
 $user = [];
-$workout = [];
-$sql = "SELECT users.workoutId, users.name, users.subscription, workouts.exercise, 
- workouts.weight, workouts.sets, workouts.reps, workouts.notes, workouts.nKey FROM users LEFT JOIN
- workouts ON users.workoutId=workouts.id WHERE users.id= '{$id}'";
-$sql2 = "SELECT exercise, weight, sets, reps, notes FROM workouts WHERE id = '{$id}'";
+
+$sql = "SELECT SELECT id, name, subscription, workoutId, dietId FROM users";
 
 if($result = mysqli_query($con,$sql))
 {
@@ -23,12 +20,8 @@ if($result = mysqli_query($con,$sql))
 	$user[$i]['workoutId'] = $row['workoutId'];
     $user[$i]['name'] = $row['name'];
     $user[$i]['subscription'] = $row['subscription'];
-	$user[$i]['exercise'] = $row['exercise'];
-	$user[$i]['weight'] = $row['weight'];
-	$user[$i]['sets'] = $row['sets'];
-	$user[$i]['reps'] = $row['reps'];
-	$user[$i]['notes'] = $row['notes'];
-	$user[$i]['nKey'] = $row['nKey'];
+    $users[$i]['workoutId'] = $row['workoutId'];
+    $users[$i]['dietId'] = $row['dietId'];
     $i++;
   }
 

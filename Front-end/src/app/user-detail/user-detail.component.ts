@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { User } from '../user';
+import { Workout } from '../workout';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators'; //Mapping for nested API calls
 
 @Component({
   selector: 'app-user-detail',
@@ -11,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
   curUser: User = {};
-  workouts?: User[];
-  selectedWork: User = {};
-  newWork: User = {exercise:'', weight: 0, sets: 0, reps: 0, notes:''};
+  workouts?: Workout[];
+  selectedWork: Workout = {};
+  newWork: Workout = {exercise:'', weight: 0, sets: 0, reps: 0, notes:''};
   toggleWork: Boolean = false;
   addW: Boolean = false;
 
@@ -21,7 +23,10 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.apiService.getUser(id).subscribe((list: User[]) => {
+
+    //Use forkJoin and mergeMap to call for user info and associated workouts
+
+    this.apiService.getUser(id).subscribe((list: Workout[]) => {
       this.workouts = list;
       this.newWork.id = list[0].workoutId;
       this.curUser.name = list[0].name;
