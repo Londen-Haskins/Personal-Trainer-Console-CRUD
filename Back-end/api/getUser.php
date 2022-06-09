@@ -8,24 +8,26 @@ require 'database.php';
 $id = $_GET['id'];
 
 
-$user = [];
+$workout = [];
 
-$sql = "SELECT SELECT id, name, subscription, workoutId, dietId FROM users";
+$sql = "SELECT exercise, weight, sets, reps, notes, nKey FROM workouts WHERE id = '{$id}'";
 
 if($result = mysqli_query($con,$sql))
 {
   $i = 0;
   while($row = mysqli_fetch_assoc($result))
   {
-	$user[$i]['workoutId'] = $row['workoutId'];
-    $user[$i]['name'] = $row['name'];
-    $user[$i]['subscription'] = $row['subscription'];
-    $users[$i]['workoutId'] = $row['workoutId'];
-    $users[$i]['dietId'] = $row['dietId'];
+	$workout[$i]['exercise'] = $row['exercise'];
+    $workout[$i]['weight'] = $row['weight'];
+    $workout[$i]['sets'] = $row['sets'];
+    $workout[$i]['reps'] = $row['reps'];
+    $workout[$i]['notes'] = $row['notes'];
+    $workout[$i]['nKey'] = $row['nKey'];
+
     $i++;
   }
 
-  echo json_encode($user);
+  echo json_encode($workout);
 }
 else
 {

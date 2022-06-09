@@ -1,50 +1,220 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<h1>PB Fitness User Management</h1>
-<div>
+<!doctype html>
+<html lang="en">
 
-  <table border='1' width='45%' style='border-collapse: collapse; font-weight: bold;'>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Subscription</th>
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Praise the Sun Fitness</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-nav">
+      <!--Top navbar div-->
+    </div>
+  </header>
 
-    </tr>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <input type="button" (click)="switchHomeTab()" value="Home">
 
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.subscription }}</td>
-      <td>
-        <button (click)="deleteUser(user.id)">Delete</button>
-        <button (click)="selectUser(user)">Update</button>
-        <button routerLink='{{user.id}}'>Details</button>
-      </td>
-    </tr>
-  </table>
+            </li>
+            <li class="nav-item">
+              <input type="button" (click)="switchWorkTab()" value="Workouts">
+              
+            </li>
+           
+            <li class="nav-item">
+              <input type="button" (click)="switchAcctTab()" value="Client Accounts">
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-  <br>
-  <button (click)="toggleCreate()">Create User</button>
-  <div *ngIf="userUp" >
-    <form #f="ngForm">
-      <label>Name</label>
-      <input type="text" name="name" [(ngModel)]="selectedUser.name">
-      <br>
-      <label>Subscription</label>
-      <input type="text" name="subscription" [(ngModel)]="selectedUser.subscription">
-      <br>
-      <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
-    </form>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <!--Toolbar at the end of "Dashboard" title line-->
+            
+          </div>
+        </div>
+
+        <!-- Main page content that can be switched according to the last sidebar button pressed -->
+
+        <div *ngIf="homeTab">
+          <div class="jumbotron">
+            <h3 class="display-4">Welcome to the Fitness Console</h3>
+            <p class="lead">The functions of this console are managing the client accounts and their subscription status. And editing each client's individual worout plan</p>
+            <br />
+            <hr class="my-4" />
+            <h2>Workouts</h2>
+            <p>In the "Workouts" tab, the trainer can edit an individual client's workout plan.
+              Each exercise has a name, weight, amount of sets, amount of reps, and aditional notes section if needed</p>
+            <br />
+
+            <h2>Client Accounts</h2>
+            <p>In the "Client Accounts" tab, the trainer can edit an individual client's account information. This includes their name and their current subscription status</p>
+          </div>
+        </div>
+
+        <div *ngIf ="clientTab">
+          <table border='1' width='45%' style='border-collapse: collapse; font-weight: bold;'>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Subscription</th>
+
+            </tr>
+
+            <tr *ngFor="let user of users">
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.subscription }}</td>
+              <td>
+                <button (click)="deleteUser(user.id)">Delete</button>
+                <button (click)="selectUser(user)">Update</button>
+                
+              </td>
+            </tr>
+          </table>
+
+          <br>
+          <button (click)="toggleCreate()">Create User</button>
+          <div *ngIf="userUp">
+            <form #f="ngForm">
+              <label>Name</label>
+              <input type="text" name="name" [(ngModel)]="selectedUser.name">
+              <br>
+              <label>Subscription</label>
+              <input type="text" name="subscription" [(ngModel)]="selectedUser.subscription">
+              <br>
+              <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
+            </form>
+          </div>
+          <div *ngIf="userCr">
+            <form #f="ngForm">
+              <label>Name</label>
+              <input type="text" name="name" [(ngModel)]="newUser.name">
+              <br>
+              <label>Subscription</label>
+              <input type="text" name="subscription" [(ngModel)]="newUser.subscription">
+              <br>
+              <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
+            </form>
+          </div>
+        </div>
+
+        <div *ngIf="workDietTab">
+          <table border='1' width='45%' style='border-collapse: collapse; font-weight: bold;'>
+            <tr>
+              <th>Name</th>
+            </tr>
+
+            <tr *ngFor="let user of users">
+              <td>{{ user.name }}</td>
+              <td>
+                <button (click)="fetchWork(user.workoutId)">Details</button>
+              </td>
+            </tr>
+
+            <tr>
+              <th>Exercise</th>
+              <th>Weight</th>
+              <th>Sets</th>
+              <th>Reps</th>
+              <th>Notes</th>
+
+            </tr>
+
+            <tr *ngFor="let workout of workouts">
+              <td>{{ workout.exercise }}</td>
+              <td>{{ workout.weight }}</td>
+              <td>{{ workout.sets }}</td>
+              <td>{{ workout.reps }}</td>
+              <td>{{ workout.notes }}</td>
+              <td>
+                <button (click)="editWork(workout)">Edit</button>
+                <button (click)="deleteWork(workout.workoutId, workout.nKey)">Delete</button>
+              </td>
+            </tr>
+          </table>
+          <button (click)="addWork()">Add exercise</button>
+          <br>
+          <div *ngIf="toggleWork">
+            <form #f="ngForm">
+              <tr>
+                <td>
+                  <label>Exercise</label>
+                  <input type="text" name="exercise" [(ngModel)]="selectedWork.exercise">
+                </td>
+                <td>
+                  <label>Weight</label>
+                  <input type="number" name="weight" maxlength="6" [(ngModel)]="selectedWork.weight">
+                </td>
+                <td>
+                  <label>Sets</label>
+                  <input type="number" name="sets" maxlength="3" [(ngModel)]="selectedWork.sets">
+                </td>
+                <td>
+                  <label>Reps</label>
+                  <input type="number" name="reps" maxlength="3" [(ngModel)]="selectedWork.reps">
+                </td>
+                <td>
+                  <label for="notes">Notes</label>
+                  <textarea id="notes" name="notes" rows="5" cols="60" [(ngModel)]="selectedWork.notes"></textarea>
+                </td>
+              </tr>
+
+              <input type="button" (click)="updateWork(f)" value="Update exercise">
+              <input type="button" (click)="stopEdit()" value="Cancel">
+            </form>
+          </div>
+
+          <div *ngIf="addW">
+            <form #f="ngForm">
+              <tr>
+                <td>
+                  <label>Exercise</label>
+                  <input type="text" name="exercise" value="" [(ngModel)]="newWork.exercise">
+                </td>
+                <td>
+                  <label>Weight</label>
+                  <input type="number" name="weight" maxlength="6" [(ngModel)]="newWork.weight">
+                </td>
+                <td>
+                  <label>Sets</label>
+                  <input type="number" name="sets" maxlength="3" [(ngModel)]="newWork.sets">
+                </td>
+                <td>
+                  <label>Reps</label>
+                  <input type="number" name="reps" maxlength="3" [(ngModel)]="newWork.reps">
+                </td>
+                <td>
+                  <label for="notes">Notes</label>
+                  <textarea id="notes" name="notes" rows="5" cols="60" [(ngModel)]="newWork.notes"></textarea>
+                </td>
+              </tr>
+
+              <input type="button" (click)="createWork(f)" value="Add exercise">
+              <input type="button" (click)="stopEdit()" value="Cancel">
+            </form>
+          </div>
+
+
+        </div>
+
+          <div *ngIf="videoTab">
+
+          </div>
+
+        <!-- End of main page content-->
+      </main>
+    </div>
   </div>
-  <div *ngIf="userCr">
-    <form #f="ngForm">
-      <label>Name</label>
-      <input type="text" name="name" [(ngModel)]="newUser.name">
-      <br>
-      <label>Subscription</label>
-      <input type="text" name="subscription" [(ngModel)]="newUser.subscription">
-      <br>
-      <input type="button" (click)="createOrUpdateUser(f)" value="Create or Update User">
-    </form>
-  </div>
 
-</div>
+</body>
+</html>
+
