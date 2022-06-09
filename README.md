@@ -4,6 +4,8 @@ A web application that serves as a client management tool for personal trainers.
 ![My Image](SamplePictures/fitnessCRUD.PNG)
 ![My Image](SamplePictures/fitnessCRUD2.PNG)
 
+For local testing, run the back-end PHP server on localhost port 8080
+
 Database structure to run this app is:
 "CREATE DATABASE pbfitness";
 
