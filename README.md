@@ -2,7 +2,7 @@
 A web application that serves as a client management tool for personal trainers. Built with an Apache server, Angular front-end, PHP back-end, and accepts data from a SQL database. This project is ongoing and will change as significant upgrades are made to functionality, and when AWS services are added.
 
 ![My Image](SamplePictures/fitnessCRUD.PNG)
-
+![My Image](SamplePictures/fitnessCRUD2.PNG)
 
 For local testing, run the back-end PHP server on localhost port 8080
 
