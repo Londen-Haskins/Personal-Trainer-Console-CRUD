@@ -30,7 +30,5 @@ PRIMARY KEY (nKey)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
 # Live Example
-(Current live application is previous version. Currently updating AWS server to newer build)
-The web app is currently hosted on AWS via a Linux t2.micro EC2 instance, and uses an AWS RDS SQL database to hold client data. All of which is contained in a virtual private cloud.
-A sample of the web app can be viewed at http://18.188.122.85/
+(Currently doing maitnence on AWS server)
 Server architecture can be examined in the diagram PDF
