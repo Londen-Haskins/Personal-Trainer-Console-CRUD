@@ -1,5 +1,5 @@
 # Personal-Trainer-Console-CRUD
-A web application that serves as a client management tool for personal trainers. Built with an Apache server, Angular front-end, PHP back-end, and accepts data from a SQL database. This project is ongoing and will change as significant upgrades are made to functionality, and when AWS services are added.
+A web application that serves as a client management tool for personal trainers. Built with an Apache server, Angular front-end, PHP back-end, and accepts data from a SQL database.
 
 ![My Image](SamplePictures/fitnessCRUD.PNG)
 ![My Image](SamplePictures/fitnessCRUD2.PNG)
@@ -30,5 +30,6 @@ PRIMARY KEY (nKey)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
 # Live Example
-(Currently doing maitnence on AWS server)
+A live example can be viewed at https://52.15.54.62/
+<br>
 Server architecture can be examined in the diagram PDF
