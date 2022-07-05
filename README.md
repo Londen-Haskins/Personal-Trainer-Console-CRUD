@@ -30,6 +30,6 @@ PRIMARY KEY (nKey)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
 # Live Example
-A live example can be viewed at https://52.15.54.62/
+(Under maitnence)
 <br>
 Server architecture can be examined in the diagram PDF
