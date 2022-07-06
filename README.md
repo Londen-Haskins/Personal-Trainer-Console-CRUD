@@ -1,3 +1,8 @@
+# Live Example
+http://3.142.217.246/#/
+<br>
+Server architecture can be examined in the diagram PDF
+
 # Personal-Trainer-Console-CRUD
 A web application that serves as a client management tool for personal trainers. Built with an Apache server, Angular front-end, PHP back-end, and accepts data from a SQL database.
 
@@ -28,9 +33,3 @@ PRIMARY KEY (id)
 `notes` text,
 PRIMARY KEY (nKey)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
-
-# Live Example
-
-http://3.142.217.246/#/
-<br>
-Server architecture can be examined in the diagram PDF
